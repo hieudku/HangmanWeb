@@ -22,11 +22,15 @@ body {
     display: none;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
+
+/* Hidden letter boxes */
 #box-container {
-    display: flex;
+    display: none;
     justify-content: center;
     gap: 1.5rem;
+    margin-top: 5rem;
 }
 .boxes {
     color:rgb(29, 32, 32);
@@ -40,22 +44,31 @@ body {
     justify-content: center;
     border-radius: 0.2rem;
 }
+/* Hidden letter boxes ends */
+
+/* Keyboard */
 #keyboard {
-    margin-top: 5rem;
-    display: flex;
+    margin-top: 15rem;
+    display: none;
     flex-wrap: wrap;
     gap: 1.5rem;
-    max-width: 52rem;
+    max-width: 44rem;
 }
 .keys {
     font-size: 25px;
     background-color: aliceblue;
     color: rgb(29, 32, 32);
-    width: 4rem;
-    height: 4rem;
+    width: 3rem;
+    height: 3rem;
     min-height: 3rem;
     min-height: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+/* Keyboard ends */
+
+/* Selection buttons */
+#select-btn {
+    display: none;
 }
