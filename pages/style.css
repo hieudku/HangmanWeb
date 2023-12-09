@@ -40,3 +40,22 @@ body {
     justify-content: center;
     border-radius: 0.2rem;
 }
+#keyboard {
+    margin-top: 5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    max-width: 52rem;
+}
+.keys {
+    font-size: 25px;
+    background-color: aliceblue;
+    color: rgb(29, 32, 32);
+    width: 4rem;
+    height: 4rem;
+    min-height: 3rem;
+    min-height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
