@@ -49,6 +49,7 @@ selectTopic.forEach(function(e) { // Loop to add events to each selection button
             getWord = getRandomWord;
             guessLetter(getWord);
             fillArray(getWord);
+            keySelect(getWord);
             console.log(String(getRandomWord));
             console.log(getWord);
         }
@@ -61,6 +62,7 @@ selectTopic.forEach(function(e) { // Loop to add events to each selection button
             let getRandomWord = randomWord(scienceArr);
             getWord = getRandomWord;
             guessLetter(getWord);
+            fillArray(getWord);
             console.log(String(getRandomWord));
         }
         else if (e.innerHTML == "Activities") {
@@ -72,6 +74,7 @@ selectTopic.forEach(function(e) { // Loop to add events to each selection button
             let getRandomWord = randomWord(activitiesArr);
             getWord = getRandomWord;
             guessLetter(getWord);
+            fillArray(getWord);
             console.log(String(getRandomWord));
         }
         else if (e.innerHTML == "Nature") {
@@ -83,6 +86,7 @@ selectTopic.forEach(function(e) { // Loop to add events to each selection button
             let getRandomWord = randomWord(natureArr);
             getWord = getRandomWord;
             guessLetter(getWord);
+            fillArray(getWord);
             console.log(String(getRandomWord));
         }
     })
@@ -126,18 +130,22 @@ function guessLetter(getWord) {
     showWord.style.display = "block";
     showWord.innerHTML = getWord;
 
-    changeText.innerHTML = "The word is: ";
+    changeText.innerHTML = "The word has " + getWord.length + " letters";
 }
 
-function keySelect() {
-    let input = "";
-    const keyList = document.querySelectorAll(".keys");
+function keySelect(getWord) {
+    let keyList = document.querySelectorAll(".keys");
     keyList.forEach(function(e){
         e.addEventListener("click", (event) => {
-            let input = keyList.getAttribute("onclick");
-            input.document.getElementsByClassName("keys").innerHTML = text;
+            /* Register the key pressed */
+            keyList = e.innerHTML;
+            console.log(keyList);
+            
+            for (i = 0; i < getWord.length - 1; i++) {
+                if (keyList !== getWord[i]) {
+                    e.style.backgroundColor = "#9E9999"
+                }
+            }
         })
     })
-    return input;
 }
-console.log(String(userInput));
