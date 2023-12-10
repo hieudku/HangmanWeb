@@ -22,16 +22,22 @@ const activitiesArr = ["bouldering", "football", "swimming", "camping"];
 const natureArr = ["volcano", "earthquake", "hurricane", "atmosphere"];
 
 /* Assign random word here */
-let getWord;
+let getWord = "";
+let hiddenArray = [];
+
+
 
 const selectTopic = document.querySelectorAll(".selectBtn");
 selectTopic.forEach(function(e) { // Loop to add events to each selection button.
     e.addEventListener("click", (event) => {
         
         let hideSelection = document.getElementById("select-btn");
-        
-        hideSelection.style.display = "none";
+        let showKeys = document.getElementById("keyboard");
+        let showMain = document.getElementById("main-content");
 
+        hideSelection.style.display = "none";
+        showKeys.style.display = "flex";
+        showMain.style.display = "flex";
         /* Conditions when select/click on each topic */
         if (e.innerHTML == "Animals") {
             /* Change background color */
@@ -42,6 +48,7 @@ selectTopic.forEach(function(e) { // Loop to add events to each selection button
             let getRandomWord = randomWord(animalArr);
             getWord = getRandomWord;
             guessLetter(getWord);
+            fillArray(getWord);
             console.log(String(getRandomWord));
             console.log(getWord);
         }
@@ -52,6 +59,8 @@ selectTopic.forEach(function(e) { // Loop to add events to each selection button
 
             /* Call function to get a random word */
             let getRandomWord = randomWord(scienceArr);
+            getWord = getRandomWord;
+            guessLetter(getWord);
             console.log(String(getRandomWord));
         }
         else if (e.innerHTML == "Activities") {
@@ -61,6 +70,8 @@ selectTopic.forEach(function(e) { // Loop to add events to each selection button
 
             /* Call function to get a random word */
             let getRandomWord = randomWord(activitiesArr);
+            getWord = getRandomWord;
+            guessLetter(getWord);
             console.log(String(getRandomWord));
         }
         else if (e.innerHTML == "Nature") {
@@ -69,11 +80,24 @@ selectTopic.forEach(function(e) { // Loop to add events to each selection button
             toGreen.style.backgroundColor = "#D7FFE2";
 
             /* Call function to get a random word */
-            let getRandomWord = randomWord(natureArr);  
+            let getRandomWord = randomWord(natureArr);
+            getWord = getRandomWord;
+            guessLetter(getWord);
             console.log(String(getRandomWord));
         }
     })
 });
+
+
+/* Slice and push each letter to empty array */
+function fillArray (getWord) {
+    for (i = 0; i < getWord.length; i++) {
+        let char = getWord.charAt(i);
+        hiddenArray.push(char);
+    }
+    console.log(hiddenArray);
+}
+
 
 /* Get random word from each array */
 function randomWord(array) {
@@ -90,4 +114,10 @@ function guessLetter(getWord) {
     showWord.innerHTML = getWord;
 
     changeText.innerHTML = "The word is: ";
+}
+
+function hideWord(getWord) {
+    const showWord = document.getElementById("random-word");
+    let changeText = document.getElementById("selectText");
+
 }
