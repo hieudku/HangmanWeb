@@ -1,6 +1,6 @@
 
 
-/*  */
+/* Add event to click to play button, initialize the program */
 const startBtn = document.getElementById("start-btn");
 startBtn.addEventListener("click", (event) => {
 
@@ -24,8 +24,8 @@ const natureArr = ["volcano", "earthquake", "hurricane", "atmosphere"];
 /* Assign random word here */
 let getWord = ""; // Randomly chosen word assigned here!
 let hiddenArray = []; // Array the word's letters.
-
-
+let userInput = keySelect(); // Letter selected goes here!
+let letterCheck = "";
 
 const selectTopic = document.querySelectorAll(".selectBtn");
 selectTopic.forEach(function(e) { // Loop to add events to each selection button.
@@ -129,3 +129,15 @@ function guessLetter(getWord) {
     changeText.innerHTML = "The word is: ";
 }
 
+function keySelect() {
+    let input = "";
+    const keyList = document.querySelectorAll(".keys");
+    keyList.forEach(function(e){
+        e.addEventListener("click", (event) => {
+            let input = keyList.getAttribute("onclick");
+            input.document.getElementsByClassName("keys").innerHTML = text;
+        })
+    })
+    return input;
+}
+console.log(String(userInput));
