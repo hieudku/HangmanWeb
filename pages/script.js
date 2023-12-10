@@ -24,9 +24,8 @@ const natureArr = ["volcano", "earthquake", "hurricane", "atmosphere"];
 /* Assign random word here */
 let getWord = ""; // Randomly chosen word assigned here!
 let hiddenArray = []; // Array the word's letters.
-let userInput = keySelect(); // Letter selected goes here!
 let letterCheck = "";
-
+let userInput = "";
 const selectTopic = document.querySelectorAll(".selectBtn");
 selectTopic.forEach(function(e) { // Loop to add events to each selection button.
     e.addEventListener("click", (event) => {
@@ -49,7 +48,7 @@ selectTopic.forEach(function(e) { // Loop to add events to each selection button
             getWord = getRandomWord;
             guessLetter(getWord);
             fillArray(getWord);
-            keySelect(getWord);
+            keySelect();
             console.log(String(getRandomWord));
             console.log(getWord);
         }
@@ -133,19 +132,16 @@ function guessLetter(getWord) {
     changeText.innerHTML = "The word has " + getWord.length + " letters";
 }
 
-function keySelect(getWord) {
+/* Register the keys user presses */
+function keySelect() {
     let keyList = document.querySelectorAll(".keys");
     keyList.forEach(function(e){
         e.addEventListener("click", (event) => {
             /* Register the key pressed */
-            keyList = e.innerHTML;
-            console.log(keyList);
-            
-            for (i = 0; i < getWord.length - 1; i++) {
-                if (keyList !== getWord[i]) {
-                    e.style.backgroundColor = "#9E9999"
-                }
-            }
+            keyPressed = e.innerHTML;
+            e.style.backgroundColor = "#9E9999"
+            console.log(keyPressed);
+            return keyPressed;
         })
     })
 }
