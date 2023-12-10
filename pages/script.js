@@ -22,8 +22,8 @@ const activitiesArr = ["bouldering", "football", "swimming", "camping"];
 const natureArr = ["volcano", "earthquake", "hurricane", "atmosphere"];
 
 /* Assign random word here */
-let getWord = "";
-let hiddenArray = [];
+let getWord = ""; // Randomly chosen word assigned here!
+let hiddenArray = []; // Array the word's letters.
 
 
 
@@ -96,8 +96,8 @@ function fillArray (getWord) {
         hiddenArray.push(char);
     }
     console.log(hiddenArray);
+    showLetterBox(getWord); // Call function to show letter boxes.
 }
-
 
 /* Get random word from each array */
 function randomWord(array) {
@@ -106,6 +106,19 @@ function randomWord(array) {
     return randomWord;
 }
 
+/* Show number of empty boxes based on the word's length */
+function showLetterBox(getWord) {
+    for (i = 0; i < getWord.length; i++) {
+        let addBoxes = document.createElement("div");
+        addBoxes.setAttribute("class", "boxes");
+        let showBoxes = document.getElementById("box-container");
+        showBoxes.appendChild(addBoxes);
+    }
+    let showBoxes = document.getElementById("box-container");
+    showBoxes.style.display = "flex";
+}
+
+/* Assign the random word to the variable on top (for testing) */
 function guessLetter(getWord) {
     const showWord = document.getElementById("random-word");
     let changeText = document.getElementById("selectText");
@@ -116,8 +129,3 @@ function guessLetter(getWord) {
     changeText.innerHTML = "The word is: ";
 }
 
-function hideWord(getWord) {
-    const showWord = document.getElementById("random-word");
-    let changeText = document.getElementById("selectText");
-
-}
