@@ -21,7 +21,7 @@ body {
     display: flex;
 }
 #main-content {
-    display: none;
+
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -84,4 +84,11 @@ body {
 #selectText {
     display: none;
 
+}
+
+/* Show random word */
+#random-word {
+    margin-top: 5rem;
+    display: none;
+    font-size: 3rem;
 }

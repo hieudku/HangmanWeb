@@ -21,6 +21,9 @@ const scienceArr = ["jupiter", "photosynthesis", "precipitation", "oxidation"]
 const activitiesArr = ["bouldering", "football", "swimming", "camping"];
 const natureArr = ["volcano", "earthquake", "hurricane", "atmosphere"];
 
+/* Assign random word here */
+let getWord;
+
 const selectTopic = document.querySelectorAll(".selectBtn");
 selectTopic.forEach(function(e) { // Loop to add events to each selection button.
     e.addEventListener("click", (event) => {
@@ -37,7 +40,10 @@ selectTopic.forEach(function(e) { // Loop to add events to each selection button
 
             /* Call function to get a random word */
             let getRandomWord = randomWord(animalArr);
+            getWord = getRandomWord;
+            guessLetter(getWord);
             console.log(String(getRandomWord));
+            console.log(getWord);
         }
         else if (e.innerHTML == "Science") {
             /* Change background color */
@@ -66,7 +72,7 @@ selectTopic.forEach(function(e) { // Loop to add events to each selection button
             let getRandomWord = randomWord(natureArr);  
             console.log(String(getRandomWord));
         }
-    })  
+    })
 });
 
 /* Get random word from each array */
@@ -74,4 +80,14 @@ function randomWord(array) {
     const randomIndex = Math.floor(Math.random() * array.length);
     const randomWord = array[randomIndex];
     return randomWord;
+}
+
+function guessLetter(getWord) {
+    const showWord = document.getElementById("random-word");
+    let changeText = document.getElementById("selectText");
+
+    showWord.style.display = "block";
+    showWord.innerHTML = getWord;
+
+    changeText.innerHTML = "The word is: ";
 }
