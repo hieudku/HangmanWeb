@@ -116,7 +116,6 @@ body {
 /* Selection text */
 #selectText {
     display: none;
-
 }
 
 /* Show random word */
@@ -129,4 +128,13 @@ canvas {
     margin-top: 2rem;
     border: none;
     background-color: #F5F5F5;
+  }
+  #canvas {
+    width: 100vw;
+    background-color: #F5F5F5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0;
+    margin-top: 2rem;
   }
