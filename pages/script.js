@@ -35,7 +35,7 @@ let hiddenArray = [];    // Array the word's letters.
 let keyPressed = "";    // Register and assign letter selected by player.
 let wrongCount = 0;    // Keep track of wrong guesses.
 let rightCount = 0;   // Keep track of right guesses.
-
+let correctArray = [];
 /* Player select different topics */
 const selectTopic = document.querySelectorAll(".selectBtn");
 selectTopic.forEach(function(e) { // Loop to add events to each selection button.
@@ -60,7 +60,7 @@ selectTopic.forEach(function(e) { // Loop to add events to each selection button
             getWord = getRandomWord;
             guessLetter(getWord);
             fillArray(getWord);
-            playGame(getWord, wrongCount, rightCount);
+            playGame(getWord, wrongCount, rightCount, correctArray, hiddenArray);
         }
         else if (e.innerHTML == "Science") {
             /* Change background color */
@@ -155,7 +155,7 @@ function guessLetter(getWord) {
 }
 
 /* Register the keys user presses and compare to each letter of the word */
-function playGame(getWord, wrongCount, rightCount) {
+function playGame(getWord, wrongCount, rightCount, correctArray, hiddenArray) {
 
     let keyList = document.querySelectorAll(".keys");
     let getKey = document.querySelectorAll(".boxes");
@@ -178,8 +178,13 @@ function playGame(getWord, wrongCount, rightCount) {
                     if (keyPressed.toUpperCase() == char.toUpperCase()) {
                             boxElement.innerHTML = char;
                             isCorrect = true;
-
+                            correctArray.push(char);
+                            console.log("correctArray: " + correctArray);
+                            console.log("hiddenArray: " + hiddenArray);
                             e.style.backgroundColor = "#45F250";
+                                if (correctArray.length == hiddenArray.length) {
+                                    alert("success");
+                                }
                     }
             });
             /* Keep count of the wrong guess by increment */
