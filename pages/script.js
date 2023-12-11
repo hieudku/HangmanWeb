@@ -138,6 +138,14 @@ function showLetterBox(getWord) {
     showBoxes.style.display = "flex";
 }
 
+/* Reveal word */
+function revealWord(getWord) {
+    let revealLetters = document.querySelectorAll(".boxes");
+        revealLetters.forEach(function(reveal, index) {
+                reveal.innerHTML = getWord.charAt(index); 
+        });
+}
+
 /* Assign the random word to the variable on top (for testing) */
 function guessLetter(getWord) {
     const showWord = document.getElementById("topic");
@@ -186,6 +194,8 @@ function playGame(getWord, wrongCount, rightCount) {
                 console.log("wrong count: " + wrongCount);
                 drawHangman(wrongCount);
             if(wrongCount >= 9) {
+                
+                revealWord(getWord);
                 alert("game over");
             }
             }
