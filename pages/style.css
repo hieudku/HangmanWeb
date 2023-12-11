@@ -14,7 +14,24 @@ body {
     margin: 0;
     height: 100vh;
 }
+#start-btn {
+    color:#f3f3f3;
+    font-size: 2rem;
+    margin-top: 2rem;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 5rem;
+    border: none;
+    background-color: #5C0808;
+    transition: ease-in-out 0.2s;
+}
+#start-btn:hover {
+    background-color: #25DB6E;
+    transition: ease-in-out 0.2s;
+    color: #000000;
+}
 #title {
+    margin-top: 8rem;;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -31,7 +48,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 0.5rem;
     margin-top: 2rem;
     min-width: 2rem;
 }
@@ -74,11 +91,15 @@ body {
     border: none;
     border-radius: 10px;
     margin: 0;
+    filter: drop-shadow(1px 3px 5px #424242);
 }
 .keys:hover {
-    background-color: aqua;
+    background-color: rgb(178, 225, 225);
     transition: ease-in-out 0.3s;
-
+}
+.keys:active {
+    filter: drop-shadow(1px 3px 5px #eaeaea);
+    transition: ease-in-out 0.3s;
 }
 /* Keyboard ends */
 

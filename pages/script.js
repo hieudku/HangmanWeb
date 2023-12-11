@@ -16,10 +16,18 @@ startBtn.addEventListener("click", (event) => {
 });
 
 /* Delare and assign arrays of words available */
-const animalArr = ["hippopotamus", "seahorse", "antellop", "sparrow"];
-const scienceArr = ["jupiter", "photosynthesis", "precipitation", "oxidation"]
-const activitiesArr = ["bouldering", "football", "swimming", "camping"];
-const natureArr = ["volcano", "earthquake", "hurricane", "atmosphere"];
+const animalArr = ["hippopotamus", "seahorse", "golden retriever", 
+                    "antellop", "sparrow", "silverback gorilla", 
+                    "hummingbird", "armadillo", "rattlesnake",
+                    "kingfisher", "platypus"];
+const scienceArr = ["electricity", "photosynthesis", "precipitation", "oxidation",
+                    "photoelectric", "chemosynthesis", "algorithm", "cryptography"]
+const activitiesArr = ["photography", "paragliding", "snowboarding", "scuba diving",
+                    "bungee jumping", "mountain biking", "rock climbing",
+                    "horseback riding", "skateboarding "];
+const natureArr = ["volcano", "earthquake", "hurricane", "atmosphere",
+                    "tropical rainforest", "renewable energy", "wildlife habitat", 
+                    "natural resources", "carbon footprint"];
 
 /* Global variables*/
 let getWord = ""; // Randomly chosen word assigned here!
@@ -134,10 +142,7 @@ function showLetterBox(getWord) {
 function guessLetter(getWord) {
     const showWord = document.getElementById("topic");
     let changeText = document.getElementById("selectText");
-
     showWord.style.display = "block";
-
-
     changeText.innerHTML = "The word has " + getWord.length + " letters";
 }
 
