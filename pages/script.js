@@ -91,7 +91,7 @@ selectTopic.forEach(function(e) { // Loop to add events to each selection button
             keySelect(getWord);
             console.log(String(getRandomWord));
         }
-    })
+    });
 });
 
 
@@ -116,17 +116,19 @@ function randomWord(array) {
 function showLetterBox(getWord) {
     for (i = 0; i < getWord.length; i++) {
         let addBoxes = document.createElement("div");
-        addBoxes.setAttribute("class", "boxes");
+        addBoxes.setAttribute("class", "boxes"); // Create number of boxes and classes based on the letter count.
         let showBoxes = document.getElementById("box-container");
         showBoxes.appendChild(addBoxes);
         
+        /* Fill each box with a letter of its original position */
         let getLetter = document.querySelectorAll(".boxes");
         for (let j = 0; j < getWord.length; j++) {
             getLetter.forEach(function(letter, index){
                 if (!letter.innerHTML) {
                     letter.innerHTML = getWord.charAt(i);
+                    letter.style.color = "aliceblue";
                 }
-        })
+            });
         }
     }
 
@@ -166,11 +168,13 @@ function keySelect(getWord, hiddenArray) {
                 for (let i = 0; i < getWord.length; i++) { // Loop through the entire word.
                     let char = getWord.charAt(i); 
                     if (keyPressed.toLowerCase() == char.toLowerCase()) {
-                        
-                    }
-                }
-            }) 
+                        if (keyPressed.includes(getWord)) {
+                            
+                        }
 
-        })
-    })
+                    } 
+                }
+            });
+        });
+    });
 }
