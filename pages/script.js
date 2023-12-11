@@ -125,9 +125,9 @@ function showLetterBox(getWord) {
         for (let j = 0; j < getWord.length; j++) {
             getLetter.forEach(function(letter, index){
                 if (!letter.innerHTML) {
-                    letter.innerHTML = getWord.charAt(i);
-                    letter.style.color = "aliceblue";
+                    letter.innerHTML = "_";
                 }
+
             });
         }
     }
@@ -148,7 +148,7 @@ function guessLetter(getWord) {
 }
 
 /* Register the keys user presses and compare to each letter of the word */
-function keySelect(getWord, hiddenArray) {
+function keySelect(getWord) {
 
     let keyList = document.querySelectorAll(".keys");
     let getKey = document.querySelectorAll(".boxes");
@@ -165,16 +165,14 @@ function keySelect(getWord, hiddenArray) {
 
             /* Loop through each box to change its properties*/
             getKey.forEach(function(boxElement, index){
-                for (let i = 0; i < getWord.length; i++) { // Loop through the entire word.
-                    let char = getWord.charAt(i); 
-                    if (keyPressed.toLowerCase() == char.toLowerCase()) {
-                        if (keyPressed.includes(getWord)) {
+                    let char = getWord.charAt(index); 
+                    if (keyPressed.toUpperCase() == char.toUpperCase()) {
+                            console.log("success");
+                            boxElement.innerHTML = char;
                             
-                        }
-
                     } 
-                }
             });
         });
     });
 }
+
