@@ -23,10 +23,11 @@ const natureArr = ["volcano", "earthquake", "hurricane", "atmosphere"];
 
 /* Global variables*/
 let getWord = ""; // Randomly chosen word assigned here!
-let hiddenArray = []; // Array the word's letters.
-let letterCheck = "";
-let keyPressed = "";
-let wrongCount = 0;
+let hiddenArray = [];    // Array the word's letters.
+let keyPressed = "";    // Register and assign letter selected by player.
+let wrongCount = 0;    // Keep track of guess counts.
+
+/* Player select different topics */
 const selectTopic = document.querySelectorAll(".selectBtn");
 selectTopic.forEach(function(e) { // Loop to add events to each selection button.
     e.addEventListener("click", (event) => {
@@ -126,9 +127,8 @@ function showLetterBox(getWord) {
         for (let j = 0; j < getWord.length; j++) {
             getLetter.forEach(function(letter, index){
                 if (!letter.innerHTML) {
-                    letter.innerHTML = "_";
+                    letter.innerHTML = "_"; // Can be edited so boxes show all letters in a word.
                 }
-
             });
         }
     }
@@ -164,7 +164,8 @@ function keySelect(getWord, wrongCount) {
             console.log("keyPressed:", keyPressed);
             console.log("getWord length:", getWord.length);
 
-            let isCorrect = false;
+            let isCorrect = false; // false = wrong guess; true = right guess.
+
             /* Loop through each box to change its properties*/
             getKey.forEach(function(boxElement, index){
                     let char = getWord.charAt(index); 
@@ -173,7 +174,6 @@ function keySelect(getWord, wrongCount) {
                             boxElement.innerHTML = char;
                             isCorrect = true;
                     }
-
             });
             /* Keep count of the wrong guess by increment */
             if (!isCorrect) {
