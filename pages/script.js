@@ -164,23 +164,26 @@ function keySelect(getWord, wrongCount) {
             console.log("keyPressed:", keyPressed);
             console.log("getWord length:", getWord.length);
 
+            let isCorrect = false;
             /* Loop through each box to change its properties*/
             getKey.forEach(function(boxElement, index){
                     let char = getWord.charAt(index); 
                     if (keyPressed.toUpperCase() == char.toUpperCase()) {
                             console.log("success");
                             boxElement.innerHTML = char;
+                            isCorrect = true;
                     }
-                    /* Compare each key to each index of box only */
-                    else {
-                        console.log("wrong guess");
-                        wrongCount++;
-                        console.log("wrong count: " + wrongCount);
-                        }
-                    if(wrongCount >= 5) {
-                        console.log("game over");
-                    }
+
             });
+            /* Keep count of the wrong guess by increment */
+            if (!isCorrect) {
+                console.log("wrong guess");
+                wrongCount++;
+                console.log("wrong count: " + wrongCount);
+            if(wrongCount >= 5) {
+                console.log("game over");
+            }
+            }
         });
     });
 }
