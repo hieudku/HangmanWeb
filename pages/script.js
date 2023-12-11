@@ -21,11 +21,11 @@ const scienceArr = ["jupiter", "photosynthesis", "precipitation", "oxidation"]
 const activitiesArr = ["bouldering", "football", "swimming", "camping"];
 const natureArr = ["volcano", "earthquake", "hurricane", "atmosphere"];
 
-/* Assign random word here */
+/* Global variables*/
 let getWord = ""; // Randomly chosen word assigned here!
 let hiddenArray = []; // Array the word's letters.
 let letterCheck = "";
-let userInput = "";
+let keyPressed = "";
 const selectTopic = document.querySelectorAll(".selectBtn");
 selectTopic.forEach(function(e) { // Loop to add events to each selection button.
     e.addEventListener("click", (event) => {
@@ -48,7 +48,7 @@ selectTopic.forEach(function(e) { // Loop to add events to each selection button
             getWord = getRandomWord;
             guessLetter(getWord);
             fillArray(getWord);
-            keySelect();
+            keySelect(getWord);
             console.log(String(getRandomWord));
             console.log(getWord);
         }
@@ -132,16 +132,25 @@ function guessLetter(getWord) {
     changeText.innerHTML = "The word has " + getWord.length + " letters";
 }
 
-/* Register the keys user presses */
-function keySelect() {
+/* Register the keys user presses and compare to each letter of the word */
+function keySelect(getWord) {
     let keyList = document.querySelectorAll(".keys");
+    let getKey = document.querySelectorAll(".boxes");
+    let keyPressed = "";
     keyList.forEach(function(e){
         e.addEventListener("click", (event) => {
+
             /* Register the key pressed */
             keyPressed = e.innerHTML;
             e.style.backgroundColor = "#9E9999"
-            console.log(keyPressed);
-            return keyPressed;
+            console.log("keyPressed:", keyPressed);
+            console.log("getWord length:", getWord.length);
+            for (let i = 0; i < getWord.length; i++) {
+                let char = getWord.charAt(i);
+                if (keyPressed.toLowerCase() == char.toLowerCase()) {
+                    console.log("success!");
+                }
+            }
         })
     })
 }
