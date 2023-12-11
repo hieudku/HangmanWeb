@@ -26,6 +26,7 @@ let getWord = ""; // Randomly chosen word assigned here!
 let hiddenArray = []; // Array the word's letters.
 let letterCheck = "";
 let keyPressed = "";
+let wrongCount = 0;
 const selectTopic = document.querySelectorAll(".selectBtn");
 selectTopic.forEach(function(e) { // Loop to add events to each selection button.
     e.addEventListener("click", (event) => {
@@ -48,7 +49,7 @@ selectTopic.forEach(function(e) { // Loop to add events to each selection button
             getWord = getRandomWord;
             guessLetter(getWord);
             fillArray(getWord);
-            keySelect(getWord);
+            keySelect(getWord, wrongCount);
             console.log(String(getRandomWord));
             console.log(getWord);
         }
@@ -62,7 +63,7 @@ selectTopic.forEach(function(e) { // Loop to add events to each selection button
             getWord = getRandomWord;
             guessLetter(getWord);
             fillArray(getWord);
-            keySelect(getWord);
+            keySelect(getWord, wrongCount);
             console.log(String(getRandomWord));
         }
         else if (e.innerHTML == "Activities") {
@@ -75,7 +76,7 @@ selectTopic.forEach(function(e) { // Loop to add events to each selection button
             getWord = getRandomWord;
             guessLetter(getWord);
             fillArray(getWord);
-            keySelect(getWord);
+            keySelect(getWord, wrongCount);
             console.log(String(getRandomWord));
         }
         else if (e.innerHTML == "Nature") {
@@ -88,7 +89,7 @@ selectTopic.forEach(function(e) { // Loop to add events to each selection button
             getWord = getRandomWord;
             guessLetter(getWord);
             fillArray(getWord);
-            keySelect(getWord);
+            keySelect(getWord, wrongCount);
             console.log(String(getRandomWord));
         }
     });
@@ -148,7 +149,7 @@ function guessLetter(getWord) {
 }
 
 /* Register the keys user presses and compare to each letter of the word */
-function keySelect(getWord) {
+function keySelect(getWord, wrongCount) {
 
     let keyList = document.querySelectorAll(".keys");
     let getKey = document.querySelectorAll(".boxes");
@@ -169,8 +170,16 @@ function keySelect(getWord) {
                     if (keyPressed.toUpperCase() == char.toUpperCase()) {
                             console.log("success");
                             boxElement.innerHTML = char;
-                            
-                    } 
+                    }
+                    /* Compare each key to each index of box only */
+                    else {
+                        console.log("wrong guess");
+                        wrongCount++;
+                        console.log("wrong count: " + wrongCount);
+                        }
+                    if(wrongCount >= 5) {
+                        console.log("game over");
+                    }
             });
         });
     });
