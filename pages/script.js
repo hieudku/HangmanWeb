@@ -45,7 +45,7 @@ selectTopic.forEach(function(e) { // Loop to add events to each selection button
         /* Conditions when select/click on each topic */
         if (e.innerHTML == "Animals") {
             /* Change background color */
-            changeBColor.style.backgroundColor = "#FFDFF5";
+            changeBColor.style.backgroundColor = "#F3DCDE";
             getTopic.innerHTML = "Animals category";
             /* Call function to get a random word */
             let getRandomWord = randomWord(animalArr);
@@ -153,7 +153,7 @@ function playGame(getWord, wrongCount, rightCount) {
 
             /* Register the key pressed */
             keyPressed = e.innerHTML;
-            e.style.backgroundColor = "#9E9999"
+            e.style.backgroundColor = "#F24545"
             console.log("keyPressed:", keyPressed);
             console.log("getWord length:", getWord.length);
 
@@ -165,6 +165,8 @@ function playGame(getWord, wrongCount, rightCount) {
                     if (keyPressed.toUpperCase() == char.toUpperCase()) {
                             boxElement.innerHTML = char;
                             isCorrect = true;
+
+                            e.style.backgroundColor = "#45F250";
                     }
             });
             /* Keep count of the wrong guess by increment */
@@ -177,11 +179,100 @@ function playGame(getWord, wrongCount, rightCount) {
                 console.log("wrong guess");
                 wrongCount++;
                 console.log("wrong count: " + wrongCount);
-            if(wrongCount >= 5) {
-                console.log("game over");
+                drawHangman(wrongCount);
+            if(wrongCount >= 9) {
+                alert("game over");
             }
             }
         });
     });
 }
 
+
+
+
+/* Draw hangman */
+ // Function to draw the hangman
+ function drawHangman(wrongCount) {
+    const canvas = document.getElementById('hangmanCanvas');
+    const ctx = canvas.getContext('2d');
+    // Clear the canvas
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+    // Draw the scaffold
+    ctx.beginPath();
+    ctx.moveTo(20, 380);
+    ctx.lineTo(120, 380);
+    ctx.stroke();
+
+    // Draw the horizontal bar
+    if (wrongCount >= 1) {
+      ctx.beginPath();
+      ctx.moveTo(70, 380);
+      ctx.lineTo(70, 80);
+      ctx.stroke();
+    }
+
+    // Draw the vertical bar
+    if (wrongCount >= 2) {
+      ctx.beginPath();
+      ctx.moveTo(70, 80);
+      ctx.lineTo(220, 80);
+      ctx.stroke();
+    }
+
+    // Draw the rope
+    if (wrongCount >= 3) {
+      ctx.beginPath();
+      ctx.moveTo(220, 80);
+      ctx.lineTo(220, 120);
+      ctx.stroke();
+    }
+
+    // Draw the head
+    if (wrongCount >= 4) {
+      ctx.beginPath();
+      ctx.arc(220, 150, 30, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+
+    // Draw the body
+    if (wrongCount >= 5) {
+      ctx.beginPath();
+      ctx.moveTo(220, 180);
+      ctx.lineTo(220, 280);
+      ctx.stroke();
+    }
+
+    // Draw the left arm
+    if (wrongCount >= 6) {
+      ctx.beginPath();
+      ctx.moveTo(220, 200);
+      ctx.lineTo(180, 220);
+      ctx.stroke();
+    }
+
+    // Draw the right arm
+    if (wrongCount >= 7) {
+      ctx.beginPath();
+      ctx.moveTo(220, 200);
+      ctx.lineTo(260, 220);
+      ctx.stroke();
+    }
+
+    // Draw the left leg
+    if (wrongCount >= 8) {
+      ctx.beginPath();
+      ctx.moveTo(220, 280);
+      ctx.lineTo(180, 330);
+      ctx.stroke();
+    }
+
+    // Draw the right leg
+    if (wrongCount >= 9) {
+      ctx.beginPath();
+      ctx.moveTo(220, 280);
+      ctx.lineTo(260, 330);
+      ctx.stroke();
+    }
+  }
