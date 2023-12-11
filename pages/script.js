@@ -25,7 +25,8 @@ const natureArr = ["volcano", "earthquake", "hurricane", "atmosphere"];
 let getWord = ""; // Randomly chosen word assigned here!
 let hiddenArray = [];    // Array the word's letters.
 let keyPressed = "";    // Register and assign letter selected by player.
-let wrongCount = 0;    // Keep track of guess counts.
+let wrongCount = 0;    // Keep track of wrong guesses.
+let rightCount = 0;   // Keep track of right guesses.
 
 /* Player select different topics */
 const selectTopic = document.querySelectorAll(".selectBtn");
@@ -35,6 +36,8 @@ selectTopic.forEach(function(e) { // Loop to add events to each selection button
         let hideSelection = document.getElementById("select-btn");
         let showKeys = document.getElementById("keyboard");
         let showMain = document.getElementById("main-content");
+        let getTopic = document.getElementById("topic");
+        let changeBColor = document.getElementById("body");
 
         hideSelection.style.display = "none";
         showKeys.style.display = "flex";
@@ -42,60 +45,50 @@ selectTopic.forEach(function(e) { // Loop to add events to each selection button
         /* Conditions when select/click on each topic */
         if (e.innerHTML == "Animals") {
             /* Change background color */
-            let toPink = document.getElementById("body");
-            toPink.style.backgroundColor = "#FFDFF5";
-
+            changeBColor.style.backgroundColor = "#FFDFF5";
+            getTopic.innerHTML = "Animals category";
             /* Call function to get a random word */
             let getRandomWord = randomWord(animalArr);
             getWord = getRandomWord;
             guessLetter(getWord);
             fillArray(getWord);
-            keySelect(getWord, wrongCount);
-            console.log(String(getRandomWord));
-            console.log(getWord);
+            playGame(getWord, wrongCount, rightCount);
         }
         else if (e.innerHTML == "Science") {
             /* Change background color */
-            let toBlue = document.getElementById("body");
-            toBlue.style.backgroundColor = "#DFE6F3";
-
+            changeBColor.style.backgroundColor = "#DFE6F3";
+            getTopic.innerHTML = "Science category";
             /* Call function to get a random word */
             let getRandomWord = randomWord(scienceArr);
             getWord = getRandomWord;
             guessLetter(getWord);
             fillArray(getWord);
-            keySelect(getWord, wrongCount);
-            console.log(String(getRandomWord));
+            playGame(getWord, wrongCount, rightCount);
         }
         else if (e.innerHTML == "Activities") {
             /* Change background color */
-            let toOrange = document.getElementById("body");
-            toOrange.style.backgroundColor = "#FFE4CA";
-
+            changeBColor.style.backgroundColor = "#FFE4CA";
+            getTopic.innerHTML = "Activities category";
             /* Call function to get a random word */
             let getRandomWord = randomWord(activitiesArr);
             getWord = getRandomWord;
             guessLetter(getWord);
             fillArray(getWord);
-            keySelect(getWord, wrongCount);
-            console.log(String(getRandomWord));
+            playGame(getWord, wrongCount, rightCount);
         }
         else if (e.innerHTML == "Nature") {
             /* Change background color */
-            let toGreen = document.getElementById("body");
-            toGreen.style.backgroundColor = "#D7FFE2";
-
+            changeBColor.style.backgroundColor = "#D7FFE2";
+            getTopic.innerHTML = "Nature category";
             /* Call function to get a random word */
             let getRandomWord = randomWord(natureArr);
             getWord = getRandomWord;
             guessLetter(getWord);
             fillArray(getWord);
-            keySelect(getWord, wrongCount);
-            console.log(String(getRandomWord));
+            playGame(getWord, wrongCount, rightCount);
         }
     });
 });
-
 
 /* Slice and push each letter to empty array */
 function fillArray (getWord) {
@@ -139,17 +132,17 @@ function showLetterBox(getWord) {
 
 /* Assign the random word to the variable on top (for testing) */
 function guessLetter(getWord) {
-    const showWord = document.getElementById("random-word");
+    const showWord = document.getElementById("topic");
     let changeText = document.getElementById("selectText");
 
     showWord.style.display = "block";
-    showWord.innerHTML = getWord;
+
 
     changeText.innerHTML = "The word has " + getWord.length + " letters";
 }
 
 /* Register the keys user presses and compare to each letter of the word */
-function keySelect(getWord, wrongCount) {
+function playGame(getWord, wrongCount, rightCount) {
 
     let keyList = document.querySelectorAll(".keys");
     let getKey = document.querySelectorAll(".boxes");
@@ -170,12 +163,16 @@ function keySelect(getWord, wrongCount) {
             getKey.forEach(function(boxElement, index){
                     let char = getWord.charAt(index); 
                     if (keyPressed.toUpperCase() == char.toUpperCase()) {
-                            console.log("success");
                             boxElement.innerHTML = char;
                             isCorrect = true;
                     }
             });
             /* Keep count of the wrong guess by increment */
+            if (isCorrect) {
+                rightCount++;
+                console.log("right guess");
+                console.log("right count: " + rightCount);
+            }
             if (!isCorrect) {
                 console.log("wrong guess");
                 wrongCount++;

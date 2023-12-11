@@ -88,8 +88,7 @@ body {
 }
 
 /* Show random word */
-#random-word {
-    margin-top: 5rem;
+#topic {
     display: none;
-    font-size: 3rem;
+    font-size: 2rem;
 }
