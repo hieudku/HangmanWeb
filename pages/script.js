@@ -62,6 +62,7 @@ selectTopic.forEach(function(e) { // Loop to add events to each selection button
             getWord = getRandomWord;
             guessLetter(getWord);
             fillArray(getWord);
+            keySelect(getWord);
             console.log(String(getRandomWord));
         }
         else if (e.innerHTML == "Activities") {
@@ -74,6 +75,7 @@ selectTopic.forEach(function(e) { // Loop to add events to each selection button
             getWord = getRandomWord;
             guessLetter(getWord);
             fillArray(getWord);
+            keySelect(getWord);
             console.log(String(getRandomWord));
         }
         else if (e.innerHTML == "Nature") {
@@ -86,6 +88,7 @@ selectTopic.forEach(function(e) { // Loop to add events to each selection button
             getWord = getRandomWord;
             guessLetter(getWord);
             fillArray(getWord);
+            keySelect(getWord);
             console.log(String(getRandomWord));
         }
     })
@@ -116,7 +119,17 @@ function showLetterBox(getWord) {
         addBoxes.setAttribute("class", "boxes");
         let showBoxes = document.getElementById("box-container");
         showBoxes.appendChild(addBoxes);
+        
+        let getLetter = document.querySelectorAll(".boxes");
+        for (let j = 0; j < getWord.length; j++) {
+            getLetter.forEach(function(letter, index){
+                if (!letter.innerHTML) {
+                    letter.innerHTML = getWord.charAt(i);
+                }
+        })
+        }
     }
+
     let showBoxes = document.getElementById("box-container");
     showBoxes.style.display = "flex";
 }
@@ -133,9 +146,11 @@ function guessLetter(getWord) {
 }
 
 /* Register the keys user presses and compare to each letter of the word */
-function keySelect(getWord) {
+function keySelect(getWord, hiddenArray) {
+
     let keyList = document.querySelectorAll(".keys");
     let getKey = document.querySelectorAll(".boxes");
+
     let keyPressed = "";
     keyList.forEach(function(e){
         e.addEventListener("click", (event) => {
@@ -145,12 +160,17 @@ function keySelect(getWord) {
             e.style.backgroundColor = "#9E9999"
             console.log("keyPressed:", keyPressed);
             console.log("getWord length:", getWord.length);
-            for (let i = 0; i < getWord.length; i++) {
-                let char = getWord.charAt(i);
-                if (keyPressed.toLowerCase() == char.toLowerCase()) {
-                    console.log("success!");
+
+            /* Loop through each box to change its properties*/
+            getKey.forEach(function(boxElement, index){
+                for (let i = 0; i < getWord.length; i++) { // Loop through the entire word.
+                    let char = getWord.charAt(i); 
+                    if (keyPressed.toLowerCase() == char.toLowerCase()) {
+                        
+                    }
                 }
-            }
+            }) 
+
         })
     })
 }
