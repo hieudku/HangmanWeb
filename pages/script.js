@@ -1,20 +1,5 @@
 
-
-/* Add event to click to play button, initialize the program */
-const startBtn = document.getElementById("start-btn");
-startBtn.addEventListener("click", (event) => {
-
-    let selectText = document.getElementById("selectText");
-    let title = document.getElementById("title");
-    let selection = document.getElementById("select-btn");
-
-    title.style.display = "none";
-    startBtn.style.display = "none";
-    selection.style.display = "flex";
-    selectText.style.display = "block";
-    
-});
-
+/************VARIABLES*******************/
 /* Delare and assign arrays of words available */
 const animalArr = ["hippopotamus", "seahorse", "golden retriever", 
                     "antellop", "sparrow", "silverback gorilla", 
@@ -36,71 +21,107 @@ let keyPressed = "";    // Register and assign letter selected by player.
 let wrongCount = 0;    // Keep track of wrong guesses.
 let rightCount = 0;   // Keep track of right guesses.
 let correctArray = [];
-/* Player select different topics */
-const selectTopic = document.querySelectorAll(".selectBtn");
-selectTopic.forEach(function(e) { // Loop to add events to each selection button.
-    e.addEventListener("click", (event) => {
-        
-        let hideSelection = document.getElementById("select-btn");
-        let showKeys = document.getElementById("keyboard");
-        let showMain = document.getElementById("main-content");
-        let getTopic = document.getElementById("topic");
-        let changeBColor = document.getElementById("body");
+let gameFinished = false;
 
-        hideSelection.style.display = "none";
-        showKeys.style.display = "flex";
-        showMain.style.display = "flex";
-        /* Conditions when select/click on each topic */
-        if (e.innerHTML == "Animals") {
-            /* Change background color */
-            changeBColor.style.backgroundColor = "#F3DCDE";
-            getTopic.innerHTML = "Animals category";
-            /* Call function to get a random word */
-            let getRandomWord = randomWord(animalArr);
-            getWord = getRandomWord;
-            guessLetter(getWord);
-            fillArray(getWord);
-            playGame(getWord, wrongCount, rightCount, correctArray, hiddenArray);
-        }
-        else if (e.innerHTML == "Science") {
-            /* Change background color */
-            changeBColor.style.backgroundColor = "#DFE6F3";
-            getTopic.innerHTML = "Science category";
-            /* Call function to get a random word */
-            let getRandomWord = randomWord(scienceArr);
-            getWord = getRandomWord;
-            guessLetter(getWord);
-            fillArray(getWord);
-            playGame(getWord, wrongCount, rightCount);
-        }
-        else if (e.innerHTML == "Activities") {
-            /* Change background color */
-            changeBColor.style.backgroundColor = "#FFE4CA";
-            getTopic.innerHTML = "Activities category";
-            /* Call function to get a random word */
-            let getRandomWord = randomWord(activitiesArr);
-            getWord = getRandomWord;
-            guessLetter(getWord);
-            fillArray(getWord);
-            playGame(getWord, wrongCount, rightCount);
-        }
-        else if (e.innerHTML == "Nature") {
-            /* Change background color */
-            changeBColor.style.backgroundColor = "#D7FFE2";
-            getTopic.innerHTML = "Nature category";
-            /* Call function to get a random word */
-            let getRandomWord = randomWord(natureArr);
-            getWord = getRandomWord;
-            guessLetter(getWord);
-            fillArray(getWord);
-            playGame(getWord, wrongCount, rightCount);
-        }
-    });
+/**************ENDS*****************/
+
+function initializeGame() {
+    /* Add event to click to play button, initialize the program */
+const startBtn = document.getElementById("start-btn");
+startBtn.addEventListener("click", (event) => {
+
+    let selectText = document.getElementById("selectText");
+    let title = document.getElementById("title");
+    let selection = document.getElementById("select-btn");
+
+    title.style.display = "none";
+    startBtn.style.display = "none";
+    selection.style.display = "flex";
+    selectText.style.display = "block";
+    
 });
+}
+
+/* Player select different topics */
+function gameStart() {
+
+    initializeGame();
+
+    const selectTopic = document.querySelectorAll(".selectBtn");
+    selectTopic.forEach(function(e) { // Loop to add events to each selection button.
+        e.addEventListener("click", (event) => {
+            
+            let hideSelection = document.getElementById("select-btn");
+            let showKeys = document.getElementById("keyboard");
+            let showMain = document.getElementById("main-content");
+            let getTopic = document.getElementById("topic");
+            let changeBColor = document.getElementById("body");
+
+            hideSelection.style.display = "none";
+            showKeys.style.display = "flex";
+            showMain.style.display = "flex";
+
+            /* Conditions when select/click on each topic */
+            if (e.innerHTML == "Animals") {
+                
+                changeBColor.style.backgroundColor = "#F3DCDE";
+                getTopic.innerHTML = "Animals category";
+                
+                let getRandomWord = randomWord(animalArr);  /* Call function to get a random word */
+                getWord = getRandomWord;
+
+                guessLetter(getWord);
+                fillArray(getWord);
+                playGame(getWord, wrongCount, rightCount, correctArray, hiddenArray, gameFinished);
+            }
+            else if (e.innerHTML == "Science") {
+                
+                changeBColor.style.backgroundColor = "#DFE6F3"; 
+                getTopic.innerHTML = "Science category";
+                
+                let getRandomWord = randomWord(scienceArr); /* Call function to get a random word */
+                getWord = getRandomWord;
+
+                guessLetter(getWord);
+                fillArray(getWord);
+                playGame(getWord, wrongCount, rightCount, correctArray, hiddenArray, gameFinished);
+            }
+
+            else if (e.innerHTML == "Activities") {
+
+                changeBColor.style.backgroundColor = "#FFE4CA";
+                getTopic.innerHTML = "Activities category";
+                
+                let getRandomWord = randomWord(activitiesArr);  /* Call function to get a random word */
+                getWord = getRandomWord;
+
+                guessLetter(getWord);
+                fillArray(getWord);
+                playGame(getWord, wrongCount, rightCount, correctArray, hiddenArray, gameFinished);
+            }
+            else if (e.innerHTML == "Nature") {
+
+                
+                changeBColor.style.backgroundColor = "#D7FFE2";
+                getTopic.innerHTML = "Nature category";
+                
+                let getRandomWord = randomWord(natureArr); /* Call function to get a random word */
+                getWord = getRandomWord;
+
+                guessLetter(getWord);
+                fillArray(getWord);
+                playGame(getWord, wrongCount, rightCount, correctArray, hiddenArray, gameFinished);
+            }
+        });
+    });
+}
+
+gameStart();
 
 /* Slice and push each letter to empty array */
 function fillArray (getWord) {
     for (i = 0; i < getWord.length; i++) {
+
         let char = getWord.charAt(i);
         hiddenArray.push(char);
     }
@@ -126,14 +147,15 @@ function showLetterBox(getWord) {
         /* Fill each box with a letter of its original position */
         let getLetter = document.querySelectorAll(".boxes");
         for (let j = 0; j < getWord.length; j++) {
+
             getLetter.forEach(function(letter, index){
+
                 if (!letter.innerHTML) {
                     letter.innerHTML = "_"; // Can be edited so boxes show all letters in a word.
                 }
             });
         }
     }
-
     let showBoxes = document.getElementById("box-container");
     showBoxes.style.display = "flex";
 }
@@ -155,7 +177,7 @@ function guessLetter(getWord) {
 }
 
 /* Register the keys user presses and compare to each letter of the word */
-function playGame(getWord, wrongCount, rightCount, correctArray, hiddenArray) {
+function playGame(getWord, wrongCount, rightCount, correctArray, hiddenArray, gameFinished) {
 
     let keyList = document.querySelectorAll(".keys");
     let getKey = document.querySelectorAll(".boxes");
@@ -175,6 +197,7 @@ function playGame(getWord, wrongCount, rightCount, correctArray, hiddenArray) {
             /* Loop through each box to change its properties*/
             getKey.forEach(function(boxElement, index){
                     let char = getWord.charAt(index); 
+
                     if (keyPressed.toUpperCase() == char.toUpperCase()) {
                             boxElement.innerHTML = char;
                             isCorrect = true;
@@ -182,33 +205,53 @@ function playGame(getWord, wrongCount, rightCount, correctArray, hiddenArray) {
                             console.log("correctArray: " + correctArray);
                             console.log("hiddenArray: " + hiddenArray);
                             e.style.backgroundColor = "#45F250";
+
                                 if (correctArray.length == hiddenArray.length) {
-                                    alert("success");
+                                    gameFinished = true;
+                                    messageBox(gameFinished);
+                                    
                                 }
                     }
             });
-            /* Keep count of the wrong guess by increment */
-            if (isCorrect) {
-                rightCount++;
-                console.log("right guess");
-                console.log("right count: " + rightCount);
-            }
-            if (!isCorrect) {
-                console.log("wrong guess");
-                wrongCount++;
-                console.log("wrong count: " + wrongCount);
-                drawHangman(wrongCount);
-            if(wrongCount >= 9) {
-                
-                revealWord(getWord);
-                alert("game over");
-            }
+
+                /* Keep count of the wrong guess by increment */
+                if (isCorrect) {
+                    rightCount++;
+                    console.log("right guess");
+                    console.log("right count: " + rightCount);
+                }
+
+                if (!isCorrect) {
+                    console.log("wrong guess");
+                    wrongCount++;
+                    console.log("wrong count: " + wrongCount);
+                    drawHangman(wrongCount);
+
+                if(wrongCount >= 9) {
+                    
+                    revealWord(getWord);
+                    alert("game over");
+                }
             }
         });
     });
 }
 
+/* Prompt player to play again or not */
+function messageBox(gameFinished) {
+    let getPrompt = document.getElementById("finishPrompt");
+    let playAgain = document.getElementById("yesBtn");
 
+    if (gameFinished) {
+        setTimeout(() =>{
+            getPrompt.style.display = "flex";
+        }, 1000)
+    }
+    playAgain.addEventListener("click", (event) => {
+        getPrompt.style.display = "none";
+        gameStart();
+    });
+}
 
 
 /* Draw hangman */
