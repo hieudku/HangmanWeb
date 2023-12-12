@@ -209,3 +209,7 @@ canvas {
   #noBtn {
     background-color: #5C0808;
   }
+  #resetLink {
+    text-decoration: none;
+    color:#eaeaea;
+  }

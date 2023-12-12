@@ -116,7 +116,7 @@ function gameStart() {
     });
 }
 
-gameStart();
+gameStart(); // Begin playing
 
 /* Slice and push each letter to empty array */
 function fillArray (getWord) {
@@ -249,7 +249,18 @@ function messageBox(gameFinished) {
     }
     playAgain.addEventListener("click", (event) => {
         getPrompt.style.display = "none";
-        gameStart();
+        const startBtn = document.getElementById("start-btn");
+        startBtn.addEventListener("click", (event) => {
+        
+            let selectText = document.getElementById("selectText");
+            let title = document.getElementById("title");
+            let selection = document.getElementById("select-btn");
+        
+            title.style.display = "none";
+            startBtn.style.display = "none";
+            selection.style.display = "flex";
+            selectText.style.display = "block";
+        })
     });
 }
 
