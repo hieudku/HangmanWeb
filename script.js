@@ -230,7 +230,8 @@ function playGame(getWord, wrongCount, rightCount, correctArray, hiddenArray, ga
                 if(wrongCount >= 9) {
                     
                     revealWord(getWord);
-                    alert("game over");
+                    gameFinished = true;
+                    messageBox(gameFinished);
                 }
             }
         });
@@ -349,4 +350,18 @@ function messageBox(gameFinished) {
       ctx.lineTo(260, 330);
       ctx.stroke();
     }
-  }
+
+      // Additional decorative elements (customize as needed)
+    ctx.fillStyle = '#000'; // Set fill color
+    ctx.font = '36px Arial'; // Set font with increased size
+
+    if (wrongCount === 9) {
+        // Display a sad face if the hangman is fully drawn
+        ctx.fillText('😞', 200, 50);
+      } else if (wrongCount > 0) {
+        // Display a sad face for each wrong attempt
+        for (let i = 0; i < wrongCount; i++) {
+          ctx.fillText('😢', 180 + i * 30, 50);
+        }
+      }
+    }
